@@ -8,7 +8,7 @@ import AdminBalance from "../components/AdminBalance";
 import AdminKYC from "../components/AdminKYC";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, DollarSign, Settings, Banknote, PlusCircle, KeyRound } from "lucide-react";
+import { Users, DollarSign, Settings, Banknote, PlusCircle, KeyRound, BadgeCheck } from "lucide-react";
 
 const tabList = [
   { key: "users", label: "Users", icon: <Users size={18} className="mr-1 text-[#16d79c]" /> },
@@ -115,7 +115,7 @@ export default function AdminDashboard() {
               <AdminUsers />
             </motion.div>
           )}
-          
+
           {activeTab === "kyc" && (
             <motion.div
               key="kyc"
