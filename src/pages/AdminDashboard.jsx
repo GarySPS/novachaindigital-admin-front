@@ -5,12 +5,14 @@ import AdminDeposits from "../components/AdminDeposits";
 import AdminWithdrawals from "../components/AdminWithdrawals";
 import DepositWalletSettings from "../components/DepositWalletSettings";
 import AdminBalance from "../components/AdminBalance";
+import AdminKYC from "../components/AdminKYC";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, DollarSign, Settings, Banknote, PlusCircle, KeyRound } from "lucide-react";
 
 const tabList = [
   { key: "users", label: "Users", icon: <Users size={18} className="mr-1 text-[#16d79c]" /> },
+  { key: "kyc", label: "KYC", icon: <BadgeCheck size={18} className="mr-1 text-[#ff8c00]" /> },
   { key: "deposits", label: "Deposits", icon: <DollarSign size={18} className="mr-1 text-[#2dd4bf]" /> },
   { key: "walletSettings", label: "Deposit Settings", icon: <Settings size={18} className="mr-1 text-[#3af0ff]" /> },
   { key: "withdrawals", label: "Withdrawals", icon: <Banknote size={18} className="mr-1 text-[#f34e6d]" /> },
@@ -111,6 +113,19 @@ export default function AdminDashboard() {
               className="w-full"
             >
               <AdminUsers />
+            </motion.div>
+          )}
+          
+          {activeTab === "kyc" && (
+            <motion.div
+              key="kyc"
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -32 }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+              className="w-full"
+            >
+              <AdminKYC />
             </motion.div>
           )}
 
