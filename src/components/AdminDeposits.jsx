@@ -1,3 +1,5 @@
+//src>components>AdminDeposits.jsx
+
 import React, { useEffect, useState } from "react";
 import { CheckCircle2, XCircle, Loader2, Image } from "lucide-react";
 import { API_BASE } from "../config";
