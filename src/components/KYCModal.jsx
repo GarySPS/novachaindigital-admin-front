@@ -1,3 +1,4 @@
+// src/components/KYCModal.jsx
 import React, { useState, useEffect } from "react";
 import { Loader2, BadgeCheck, XCircle, Image, ShieldCheck } from "lucide-react";
 import { API_BASE, MAIN_API_BASE } from "../config";
@@ -11,9 +12,17 @@ export default function KYCModal({ open, onClose, user, onAction }) {
     if (!open || !user) return;
     const fetchKYC = async () => {
       try {
-        const res = await fetch(`${ADMIN_API_BASE}/api/admin/user/${user.id}/kyc`);
+        // FIX: Added the missing admin token so the server allows the request
+        const token = localStorage.getItem("adminToken");
+        
+        // FIX: Changed undefined ADMIN_API_BASE to API_BASE
+        const res = await fetch(`${API_BASE}/api/admin/user/${user.id}/kyc`, {
+          headers: { Authorization: `Bearer ${token}` } 
+        });
+        
         if (!res.ok) throw new Error("Could not load KYC docs");
         const data = await res.json();
+        
         setKyc({
           selfie: data.kyc_selfie ? (data.kyc_selfie.startsWith("http") ? data.kyc_selfie : `${MAIN_API_BASE}${data.kyc_selfie}`) : "",
           id_card: data.kyc_id_card ? (data.kyc_id_card.startsWith("http") ? data.kyc_id_card : `${MAIN_API_BASE}${data.kyc_id_card}`) : "",
@@ -30,7 +39,7 @@ export default function KYCModal({ open, onClose, user, onAction }) {
     setError("");
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(`${ADMIN_API_BASE}/api/admin/user-kyc-status`, {
+      const res = await fetch(`${API_BASE}/api/admin/user-kyc-status`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

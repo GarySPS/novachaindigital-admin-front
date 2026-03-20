@@ -1,3 +1,5 @@
+//components>AdminUsers.jsx
+
 import React, { useEffect, useState, useRef } from "react";
 import { UserCircle2, BadgeCheck, XCircle, Loader2 } from "lucide-react";
 import { API_BASE } from "../config";

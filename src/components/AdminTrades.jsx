@@ -1,3 +1,5 @@
+//src>components>AdminTrades.jsx
+
 import React, { useEffect, useState } from "react";
 import { Loader2, TrendingUp } from "lucide-react";
 import { API_BASE } from "../config";
